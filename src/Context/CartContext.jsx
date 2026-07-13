@@ -1,8 +1,8 @@
 import { createContext, useContext, useState } from "react";
 
-const cartContext = createContext();
+const CartContext = createContext();
 
-export const cartProvider = ({ children }) => {
+export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   //   Add product to cart
@@ -17,12 +17,24 @@ export const cartProvider = ({ children }) => {
     });
   };
 
+  // Remove Product to cart 
+  const RemoveProduct = (id)=>{
+    setCart((prev) => prev.filter((item)=> item.id !== id))
+  }
+
+  // Update Quantity 
+  const UpdateQuantity = (id, qty) =>{
+    setCart((prev)=>
+    prev.map((item)=> (item.id === id) ? {...item, qty} : item)
+    )
+  }
+
   return (
-    <cartProvider.Provider value={{ cart, setCart, AddtoCart }}>
+    <CartContext.Provider value={{ cart, AddtoCart, RemoveProduct, UpdateQuantity }}>
       {children}
-    </cartProvider.Provider>
+    </CartContext.Provider>
   );
 };
 
 // Custom Hook 
-export const useCart = ()=> useContext(cartContext)
+export const useCart = ()=> useContext(CartContext)
