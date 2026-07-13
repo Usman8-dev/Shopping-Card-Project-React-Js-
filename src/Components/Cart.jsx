@@ -2,7 +2,7 @@ import React from "react";
 import { useCart} from "../Context/CartContext";
 
 function Cart() {
-  const { cart, RemoveProduct, UpdateQuantity   } = useCart();
+  const { cart, RemoveProduct, UpdateQuantity , Total  } = useCart();
 
   return (
     <div>
@@ -66,7 +66,7 @@ function Cart() {
             <div className="mt-10 bg-white rounded-2xl border border-[#E8E5DA] p-6">
               <div className="flex items-center justify-between text-sm text-[#6B6A63]">
                 <span>Subtotal</span>
-                <span>$1,727</span>
+                <span>Rs. {Total.toFixed(2)}</span>
               </div>
               <div className="flex items-center justify-between text-sm text-[#6B6A63] mt-2">
                 <span>Shipping</span>
@@ -74,7 +74,7 @@ function Cart() {
               </div>
               <div className="flex items-center justify-between text-[#141412] text-base font-semibold mt-4 pt-4 border-t border-[#E8E5DA]">
                 <span>Total</span>
-                <span>$1,727</span>
+                <span>Rs. {Total.toFixed(2)}</span>
               </div>
 
               <button className="mt-6 w-full py-3 rounded-full bg-[#141412] text-[#F5F3EC] text-sm font-medium tracking-wide hover:bg-[#2A2A26] transition-colors duration-200">
